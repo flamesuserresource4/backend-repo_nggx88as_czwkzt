@@ -41,8 +41,10 @@ class Product(BaseModel):
 # Add your own schemas here:
 # --------------------------------------------------
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Guestbook(BaseModel):
+    """
+    Guest book entries left by site visitors.
+    Collection name: "guestbook" (lowercase of class name)
+    """
+    name: str = Field(..., max_length=80, description="Visitor name or handle")
+    message: str = Field(..., max_length=500, description="Visitor message; emojis allowed")
